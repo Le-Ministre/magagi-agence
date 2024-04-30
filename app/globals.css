@@ -1,6 +1,15 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
+
+
+
+.section1{
+  background-image: url(../public/vol1.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
