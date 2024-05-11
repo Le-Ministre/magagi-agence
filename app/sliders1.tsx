@@ -29,13 +29,13 @@ export default function sliders1() {
 
   return (
     <div className='w-full '>
-        <Page >
+        {/* <Page >
             {
                 slides.map((s) =>{
                     <Image src={'s'} alt={'s'} />
                 })
             }
-        </Page>
+        </Page> */}
     </div>
   )
 }

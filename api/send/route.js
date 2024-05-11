@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 
-const sendEmail = async (message, email, subject) => {
+const sendEmail = async (name, email, subject, message) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -17,8 +17,8 @@ const sendEmail = async (message, email, subject) => {
     to: process.env.EMAIL,
     subject: `Message From ${email}`,
     text: subject + " | Sent from: " + email,
-    html: `<div>${subject}</div><p>Sent from:${email}</p>
-    <div>${message}<id/>`,
+    html: `<div>${subject}</div><p>Sent from:${name}</p><p>${email}</p>
+    <div>${message}</idv>`,
   };
 
  
@@ -34,10 +34,12 @@ const sendEmail = async (message, email, subject) => {
 export async function POST(req, res) {
   const data  =await req.json()
   const emailSend = await sendEmail(
-    data.message,
+    data.name,
     data.email,
-    data.subject
+    data.subject,
+    data.message
   );
+  console.log(data);
   if (emailSend) {
     return NextResponse.json(
       { success: true, message: "Envoyé avec succès" },
@@ -50,33 +52,4 @@ export async function POST(req, res) {
     );
 }
 
-// const resend = new Resend(process.env.RESEND_API_KEY);
-// const fromEmail = process.env.FROM_EMAIL;
 
-// export async function POST(req, res) {
-//   const body = await req.json();
-//   // console.log(body);
-//   const {email, subject, message} = body;
-//   try {
-//     const data = await resend.emails.send({
-//       from: fromEmail,
-//       to: ['abdourahamaneabdoulaye36@gmail.com', email],
-//       subject: subject,
-//       react:(
-//         <>
-//         <h1>{subject}</h1>
-//         <p>Thank you for contacting us!</p>
-//         <p>New message submitted:</p>
-//         <p>{message}</p>
-//         </>
-//       ),
-
-//     });
-
-//     return NextResponse.json(data);
-//   } catch (error) {
-
-//     return NextResponse.json({ error });
-//   }
-// }
-// sendEmail('good gob', 'abdoul@gmail.com', 'Hello');

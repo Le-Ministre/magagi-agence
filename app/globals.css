@@ -6,8 +6,8 @@
 
 .section1{
   background-image: url(../public/vol1.jpeg);
-  background-size: cover;
-  background-position: center;
+  /* background-size: cover;
+  background-position: center; */
 }
 
 
